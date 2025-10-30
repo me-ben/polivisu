@@ -1,0 +1,16 @@
+#TITLE
+Durchschnittliche Dauer Stromunterbrechung pro Verbraucher in Minuten
+#DATA
+Jahr,Deutschland,Frankreich,Japan
+2015,12.7,66.0,13.0
+2016,12.8,62.0,15.0
+2017,15.0,61.0,16.0
+2018,13.9,61.0,17.0
+2019,12.2,59.0,16.0
+2020,10.7,52.0,22.0
+2021,12.7,56.0,23.0
+2022,12.2,53.0,25.0
+#SOURCES
+todo,todo
+#UNIT
+min

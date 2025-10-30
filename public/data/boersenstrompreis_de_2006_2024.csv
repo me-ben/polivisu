@@ -1,0 +1,27 @@
+﻿#TITLE
+Durchschnittlicher Börsenstrompreis in Deutschland
+#DATA
+Jahr,Börsenstrompreis
+2006,51.05
+2007,39.56
+2008,66.77
+2009,39.88
+2010,45.55
+2011,51.58
+2012,42.63
+2013,37.85
+2014,32.58
+2015,31.45
+2016,28.20
+2017,32.87
+2018,43.26
+2019,36.64
+2020,29.51
+2021,93.36
+2022,230.57
+2023,92.29
+2024,78.01
+#SOURCES
+Fraunhofer ISE,https://energy-charts.info/charts/price_average/chart.htm?l=de&c=DE&interval=year&year=-1&legendItems=1&timeslider=0
+#UNIT
+EUR/MWh
