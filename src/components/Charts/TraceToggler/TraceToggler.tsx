@@ -36,7 +36,7 @@ export const TraceToggler: React.FC<TraceTogglerProps> = ({
               onClick={() => onToggle(trace.id)}
               onMouseEnter={() => setHoveredTrace(trace.id)}
               onMouseLeave={() => setHoveredTrace(null)}
-              className="px-1 rounded-full text-xs font-medium"
+              className="cursor-pointer px-1 rounded-full text-xs font-medium"
               style={{
                 border: `solid 2px ${bgColor}`,
                 backgroundColor: hoveredTrace === trace.id

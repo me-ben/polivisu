@@ -1,186 +1,190 @@
 import React, { useState, useEffect } from 'react';
 
-// Typen
 type BarSegments = number[];
 type BarData = Record<string, BarSegments>;
 
-// Konstanten - Jetzt mit Tailwind-Klassen statt Farbcodes
-const DEFAULT_COLORS = [
-  "bg-zinc-500", 
-  "bg-zinc-400", 
-  "bg-zinc-300", 
-  "bg-white", 
-  "bg-zinc-700", 
-  "bg-white"
-];
 
-const HOVER_COLORS = [
-  "bg-white", 
-  "bg-red-100", 
-  "bg-red-200", 
-  "bg-red-300", 
-  "bg-zinc-700", 
-  "bg-red-300"
-];
+// Animation configuration - single source of truth for all transitions
+const ANIMATION = {
+  DURATION: 200,
+  TIMING_FUNCTION: 'ease-in-out' as const,
+} as const;
 
-const SCALE = {
-  MOBILE: 2/4,
-  DESKTOP: 2/3,
+// Color definitions - converted to hex values for CSS transitions
+const COLORS = {
+  DEFAULT: [
+    "#71717a", // bg-zinc-500
+    "#a1a1aa", // bg-zinc-400
+    "#d4d4d8", // bg-zinc-300
+    "#ffffff", // bg-white
+    "#3f3f46", // bg-zinc-700
+    "#ffffff", // bg-white
+    "#3f3f46", // bg-zinc-700
+    "#3f3f46", // bg-zinc-700
+    "#3f3f46", // bg-zinc-700
+  ],
+  HOVER: [
+    "#3f3f46", // bg-zinc-700
+    "#fee2e2", // bg-red-100
+    "#fecaca", // bg-red-200
+    "#fca5a5", // bg-red-300
+    "#3f3f46", // bg-zinc-700
+    "#fca5a5", // bg-red-300
+    "#bd8385", // custom
+    "#7e6166", // custom
+    "#3f3f46", // bg-zinc-700
+  ],
+} as const;
+
+
+  // Layout configuration
+  const LAYOUT = {
+  MOBILE_SCALE: 2 / 4,
+  DESKTOP_SCALE: 2 / 3,
   BAR_HEIGHT: 4,
   BAR_GAP: 2,
-  SEGMENT_DIVISOR: (10/3)*2,
+  SEGMENT_DIVISOR: (10 / 3) * 2,
 } as const;
 
-const ANIMATION_CONFIG = {
-  enabled: true,
-  speed: 100,
-  maxAmplitude: 80,
-  stepSize: 20,
-  gapBars: 30,
-} as const;
 
-const BASE_BAR_DATA: BarData = {
-  'bar_0': [200, 60, 60, 60],
-  'bar_1': [210, 60, 60, 90, 30, 100],
-  'bar_2': [130, 60, 60, 310],
-  'bar_3': [140, 60, 60, 300],
-  'bar_4': [130, 60, 60, 320],
-  'bar_5': [100, 60, 60, 360],
-  'bar_6': [90, 60, 60, 340],
-  'bar_7': [100, 60, 60, 260],
-  'bar_8': [110, 60, 60, 260],
-  'bar_9': [170, 60, 60, 220],
-  'bar_10': [150, 60, 60, 260],
-  'bar_11': [140, 60, 60, 250],
-};
+// Animation states
+const STATES = {
+  START: {
+    'bar_0': [200, 0, 0, 60, 0, 0, 60, 60, 200],
+    'bar_1': [210, 0, 0, 90, 30, 100, 60, 60, 30],
+    'bar_2': [130, 0, 0, 310, 0, 0, 60, 60, 20],
+    'bar_3': [140, 0, 0, 300, 0, 0, 60, 60, 20],
+    'bar_4': [130, 0, 0, 320, 0, 0, 60, 60, 10],
+    'bar_5': [100, 0, 0, 360, 0, 0, 60, 60, 0],
+    'bar_6': [90, 0, 0, 340, 0, 0, 60, 60, 30],
+    'bar_7': [100, 0, 0, 260, 0, 0, 60, 60, 100],
+    'bar_8': [110, 0, 0, 260, 0, 0, 60, 60, 90],
+    'bar_9': [170, 0, 0, 220, 0, 0, 60, 60, 70],
+    'bar_10': [150, 0, 0, 260, 0, 0, 60, 60, 50],
+    'bar_11': [140, 0, 0, 250, 0, 0, 60, 60, 70],
+  } as BarData,
 
-const isDesktop = (): boolean => typeof window !== 'undefined' && window.innerWidth >= 640;
-
-const calculateBarExtension = (barIndex: number, iteration: number): number => {
-  const { maxAmplitude, stepSize, gapBars } = ANIMATION_CONFIG;
-  const stepsToMax = maxAmplitude / stepSize;
-  const waveLength = stepsToMax * 2;
-  const totalCycleLength = waveLength + gapBars;
-  const positionInCycle = (iteration - barIndex + totalCycleLength * 100) % totalCycleLength;
-
-  if (positionInCycle >= waveLength) return 0;
-  if (positionInCycle <= stepsToMax) return positionInCycle * stepSize;
-  if (positionInCycle < waveLength) return maxAmplitude - ((positionInCycle - stepsToMax) * stepSize);
-
-  return 0;
-};
-
-const getAnimatedBarData = (iteration: number): BarData => {
-  const animatedData: BarData = {};
-
-  Object.entries(BASE_BAR_DATA).forEach(([barId, segments], index) => {
-    const extension = calculateBarExtension(index, iteration);
-    const animatedSegments = [...segments];
-    animatedSegments[0] = segments[0] + extension;
-    animatedData[barId] = animatedSegments;
-  });
-
-  return animatedData;
+  END: {
+    'bar_0': [200, 60, 60, 60, 0, 0, 0, 0, 200],
+    'bar_1': [210, 60, 60, 90, 30, 100, 0, 0, 30],
+    'bar_2': [130, 60, 60, 310, 0, 0, 0, 0, 20],
+    'bar_3': [140, 60, 60, 300, 0, 0, 0, 0, 20],
+    'bar_4': [130, 60, 60, 320, 0, 0, 0, 0, 10],
+    'bar_5': [100, 60, 60, 360, 0, 0, 0, 0, 0],
+    'bar_6': [90, 60, 60, 340, 0, 0, 0, 0, 30],
+    'bar_7': [100, 60, 60, 260, 0, 0, 0, 0, 100],
+    'bar_8': [110, 60, 60, 260, 0, 0, 0, 0, 90],
+    'bar_9': [170, 60, 60, 220, 0, 0, 0, 0, 70],
+    'bar_10': [150, 60, 60, 260, 0, 0, 0, 0, 50],
+    'bar_11': [140, 60, 60, 250, 0, 0, 0, 0, 70],
+  } as BarData,
 };
 
 interface BarSegmentProps {
   length: number;
-  className: string;
+  color: string;
 }
 
-const BarSegment: React.FC<BarSegmentProps> = ({ length, className }) => {
-  return (
-    <div
-      className={className}
-      style={{
-        height: `calc(${SCALE.BAR_HEIGHT}px * var(--logo-scale))`,
-        width: `calc(${length / SCALE.SEGMENT_DIVISOR}px * var(--logo-scale))`,
-        transition: 'width 0.1s ease-out',
-      }}
-    />
-  );
-};
+const BarSegment: React.FC<BarSegmentProps> = ({ length, color }) => (
+  <div
+    style={{
+      height: `calc(${LAYOUT.BAR_HEIGHT}px * var(--logo-scale))`,
+      width: `calc(${length / LAYOUT.SEGMENT_DIVISOR}px * var(--logo-scale))`,
+      backgroundColor: color,
+      transition: `width ${ANIMATION.DURATION}ms ${ANIMATION.TIMING_FUNCTION}, background-color ${ANIMATION.DURATION}ms ${ANIMATION.TIMING_FUNCTION}`,
+    }}
+  />
+);
 
 interface LogoBarProps {
   segments: BarSegments;
   isHovered: boolean;
 }
 
-const LogoBar: React.FC<LogoBarProps> = ({ segments, isHovered }) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        height: `calc(${SCALE.BAR_HEIGHT}px * var(--logo-scale))`,
-        marginBottom: `calc(${SCALE.BAR_GAP}px * var(--logo-scale))`,
-      }}
-    >
-      {segments.map((segmentLength, index) => (
-        <BarSegment
-          key={index}
-          length={segmentLength}
-          className={`${isHovered ? HOVER_COLORS[index] : DEFAULT_COLORS[index]} 
-                     transition-colors duration-300`}
-        />
-      ))}
-    </div>
-  );
-};
+const LogoBar: React.FC<LogoBarProps> = ({ segments, isHovered }) => (
+  <div
+    style={{
+      display: 'flex',
+      height: `calc(${LAYOUT.BAR_HEIGHT}px * var(--logo-scale))`,
+      marginBottom: `calc(${LAYOUT.BAR_GAP}px * var(--logo-scale))`,
+    }}
+  >
+    {segments.map((length, index) => (
+      <BarSegment
+        key={index}
+        length={length}
+        color={isHovered ? COLORS.HOVER[index] : COLORS.DEFAULT[index]}
+      />
+    ))}
+  </div>
+);
 
 interface LogoProps {
   className?: string;
-  onClick?: () => void;
+  isHovered?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = "", onClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [iteration, setIteration] = useState(0);
-  const [scale, setScale] = useState<number>(SCALE.MOBILE);
+export const Logo: React.FC<LogoProps> = ({ 
+  className = "", 
+  isHovered = false 
+}) => {
+  const [barData, setBarData] = useState<BarData>(STATES.START);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [scale, setScale] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Determine initial scale before rendering
   useEffect(() => {
-    const updateScale = () => {
-      setScale(isDesktop() ? SCALE.DESKTOP : SCALE.MOBILE);
+    const getInitialScale = () => {
+      if (typeof window === 'undefined') return null;
+      return window.innerWidth >= 640 ? LAYOUT.DESKTOP_SCALE : LAYOUT.MOBILE_SCALE;
     };
 
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
+    setScale(getInitialScale());
+    setIsMounted(true);
   }, []);
 
+  // Animation setup
   useEffect(() => {
-    if (!ANIMATION_CONFIG.enabled) return;
+    if (scale === null || hasAnimated || isHovered) return;
 
-    const interval = setInterval(() => {
-      setIteration(prev => prev + 1);
-    }, ANIMATION_CONFIG.speed);
+    const timer = setTimeout(() => {
+      setBarData(STATES.END);
+      setHasAnimated(true);
+    }, 0);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [scale, hasAnimated, isHovered]);
 
-  const currentBarData = ANIMATION_CONFIG.enabled 
-    ? getAnimatedBarData(iteration)
-    : BASE_BAR_DATA;
+  // Hover animation
+  useEffect(() => {
+    if (!hasAnimated || scale === null) return;
+    setBarData(isHovered ? STATES.START : STATES.END);
+  }, [isHovered, hasAnimated, scale]);
+
+  // Responsive scaling
+  useEffect(() => {
+    if (scale === null) return;
+
+    const handleResize = () => {
+      setScale(window.innerWidth >= 640 ? LAYOUT.DESKTOP_SCALE : LAYOUT.MOBILE_SCALE);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [scale]);
+
+  // Don't render until scale is determined
+  if (scale === null || !isMounted) return null;
 
   return (
     <div
-      className={className}
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        ['--logo-scale' as string]: scale,
-        cursor: onClick ? 'pointer' : 'default',
-      }}
+      className={`cursor-pointer ${className}`}
+      style={{ ['--logo-scale' as string]: scale }}
     >
-      <div>
-        {Object.entries(currentBarData).map(([barId, segments]) => (
-          <LogoBar
-            key={barId}
-            segments={segments}
-            isHovered={isHovered}
-          />
-        ))}
-      </div>
+      {Object.entries(barData).map(([id, segments]) => (
+        <LogoBar key={id} segments={segments} isHovered={isHovered} />
+      ))}
     </div>
   );
 };

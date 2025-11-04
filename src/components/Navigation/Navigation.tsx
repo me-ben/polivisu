@@ -46,7 +46,7 @@ export const Navigation = ({
 
   if (isHomepage) {
     return (
-      <nav className="max-w-6xl mx-auto px-2 sm:px-4 pb-2 sm:pb-4 rounded-b-lg bg-zinc-700">
+      <nav className="max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg bg-zinc-700">
         <div className="flex flex-wrap gap-2 sm:gap-4 justify-left">
           {navButtons}
         </div>
@@ -55,7 +55,7 @@ export const Navigation = ({
   }
 
   return (
-    <nav className="fixed z-[999] inset-x-0 max-w-6xl mx-auto px-2 sm:px-4 pb-2 sm:pb-4 bg-zinc-700 rounded-b-lg">
+    <nav className="fixed z-[999] inset-x-0 max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 bg-zinc-700 rounded-b-lg">
       <div className="flex flex-wrap gap-2 sm:gap-4 justify-left">
         {navButtons}
       </div>
