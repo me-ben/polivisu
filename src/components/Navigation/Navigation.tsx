@@ -38,7 +38,7 @@ export const Navigation = ({
     <button
       key={route.path}
       onClick={() => handleNavigate(route.path)}
-      className="bg-white hover:bg-gradient-to-t hover:from-red-300 hover:to-white text-black font-base cursor-pointer px-2 rounded-lg transition-colors flex-shrink-0"
+      className="bg-white hover:bg-neutral-200 font-base cursor-pointer px-2 rounded-lg shrink-0"
     >
       {route.name}
     </button>
@@ -46,7 +46,7 @@ export const Navigation = ({
 
   if (isHomepage) {
     return (
-      <nav className="max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg bg-zinc-700">
+      <nav className="max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 rounded-b-lg bg-neutral-800">
         <div className="flex flex-wrap gap-2 sm:gap-4 justify-left">
           {navButtons}
         </div>
@@ -55,7 +55,7 @@ export const Navigation = ({
   }
 
   return (
-    <nav className="fixed z-[999] inset-x-0 max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 bg-zinc-700 rounded-b-lg">
+    <nav className="fixed z-999 inset-x-0 max-w-6xl mx-auto px-2 sm:px-4 py-2 sm:py-4 bg-neutral-800 rounded-b-lg">
       <div className="flex flex-wrap gap-2 sm:gap-4 justify-left">
         {navButtons}
       </div>

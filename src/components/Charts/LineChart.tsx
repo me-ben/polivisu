@@ -31,9 +31,9 @@ export const LineChart: React.FC<LineChartProps> = ({
   const Plot = useMemo(() => dynamic(() => import('react-plotly.js'), {
     ssr: false,
     loading: () => (
-      <div 
+      <div
         className="flex items-center justify-center border border-dashed rounded-lg"
-        style={{ 
+        style={{
           height: typeof chartHeight === 'number' ? `${chartHeight}px` : chartHeight,
           width: '100%'
         }}
@@ -43,12 +43,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     )
   }), [chartHeight]);
 
-  const { title, unit, sources, data } = chartData;
-
-  const xColumn = useMemo(() => {
-    if (!data.length) return '';
-    return Object.keys(data[0])[0];
-  }, [data]);
+  const { title, unit, sources, data, comment } = chartData;
 
   const plotData = useMemo((): Data[] => {
     if (!data.length || Object.keys(data[0]).length < 2) return [];
@@ -76,12 +71,12 @@ export const LineChart: React.FC<LineChartProps> = ({
     }));
   }, [data, unit]);
 
-  const traces = useMemo(() => 
+  const traces = useMemo(() =>
     plotData.map((trace, index) => ({
       id: trace.name as string,
       name: trace.name as string,
       color: getTraceColor(index)
-    })), 
+    })),
     [plotData]
   );
 
@@ -127,7 +122,7 @@ export const LineChart: React.FC<LineChartProps> = ({
               yaxis: {
                 linecolor: 'black',
                 gridcolor: '#dfdfdf',
-                gridwidth: 1, 
+                gridwidth: 1,
                 tickfont: { size: 16, color: 'black' }
               },
               paper_bgcolor: 'white',
@@ -141,40 +136,26 @@ export const LineChart: React.FC<LineChartProps> = ({
                 align: 'right'
               },
             }}
-            config={{ 
+            config={{
               displayModeBar: false,
-              responsive: false 
+              responsive: false
             }}
             useResizeHandler
-            style={{ 
-              width: '100%', 
+            style={{
+              width: '100%',
               height: typeof chartHeight === 'number' ? `${chartHeight}px` : chartHeight
             }}
           />
         </div>
 
         <div className="w-full lg:w-1/3 flex flex-col gap-6">
-          {sources.length > 0 && (
-            <CollapsibleSection 
-              title={`Quelle${sources.length > 1 ? 'n' : ''}`}
-              defaultCollapsed={false}
-            >
-              <div className="space-y-2 text-sm text-gray-600">
-                {sources.map((s, i) => (
-                  <div key={i} className="flex items-start gap-1">
-                    <span className="mt-1">•</span>
-                    <a 
-                      href={s.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hover:text-blue-600 transition-colors break-words"
-                    >
-                      {s.name}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </CollapsibleSection>
+          {(sources.length > 0 || comment) && (
+            <CollapsibleSection
+              title="Details"
+              sources={sources}
+              comment={comment}
+              defaultCollapsed={true}
+            />
           )}
         </div>
       </div>

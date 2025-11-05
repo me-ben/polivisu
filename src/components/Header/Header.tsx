@@ -1,17 +1,17 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Navigation } from '@/components/Navigation/Navigation';
 import { Logo } from '@/components/Logo/Logo';
 import { useRouter } from 'next/navigation';
 import { routes } from '@/lib/routes';
+import { Arrow } from '@/components/Arrow/Arrow';
 
 const Header = () => {
   const pathname = usePathname();
   const isHomepage = pathname === '/';
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   // Determine current page title
@@ -20,65 +20,43 @@ const Header = () => {
     return route?.name || 'Seite';
   }, [pathname]);
 
-  // Prevent FOUC by delaying render until mounted
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return (
-      <header className="sticky top-0 z-[1000] bg-zinc-700">
-        <div className="max-w-6xl mx-auto h-16" />
-      </header>
-    );
-  }
-
   return (
     <>
-      <header className="sticky top-0 z-[1000] bg-zinc-700">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-top justify-between w-full gap-2 sm:gap-4">
-            {/* Logo und Titel Container - nimmt verfügbaren Platz ein und ermöglicht Titel-Überlauf */}
-            <div 
+      <header className="sticky top-0 z-1000 bg-neutral-800">
+        <div className="max-w-6xl mx-auto relative z-1000">
+          <div className="flex items-center justify-between w-full gap-2 sm:gap-4 pr-2 sm:pr-4">
+            {/* Logo und Titel Container */}
+            <div
               onClick={() => router.push('/')}
               onMouseEnter={() => setIsLogoHovered(true)}
               onMouseLeave={() => setIsLogoHovered(false)}
               className="group flex items-center py-2 sm:py-4 flex-row text-left gap-2 sm:gap-4 flex-1 min-w-0 overflow-hidden cursor-pointer"
             >
               <Logo isHovered={isLogoHovered} />
-              <h1 className="text-xl font-bold text-white group-hover:text-red-300 transition-colors duration-200 ease-in-out overflow-hidden text-ellipsis whitespace-nowrap">
+              <h1 className="text-xl font-bold text-white group-hover:underline overflow-hidden text-ellipsis whitespace-nowrap">
                 Deutschland in Daten
               </h1>
             </div>
 
-            {/* Navigation Button - nimmt immer benötigten Platz ein (flex-shrink-0) */}
+            {/* Navigation Button - vertikal zentriert */}
             {!isHomepage && (
               <button
                 onClick={() => setIsNavOpen(!isNavOpen)}
                 aria-label={isNavOpen ? "Navigation schließen" : "Navigation öffnen"}
                 aria-expanded={isNavOpen}
-                className={`h-8 sm:h-12 pl-2 sm:pl-4 pr-1 mb-2 sm:mb-4 sm:pr-2 sm:gap-1 rounded-b-lg cursor-pointer flex items-center justify-center flex-shrink-0
-                  ${isNavOpen
-                    ? 'bg-red-300 hover:bg-gradient-to-t hover:from-red-300 hover:to-white'
-                    : 'bg-white hover:bg-gradient-to-t hover:from-red-300 hover:to-white'
-                  }`}
+                className="h-8 sm:h-12 pl-2 sm:pl-4 pr-1 sm:pr-2 sm:gap-1 rounded-lg cursor-pointer flex items-center justify-center shrink-0 bg-white hover:bg-neutral-200"
               >
                 <span className="sr-only">Navigation</span>
-                <span className="font-bold text-black text-base sm:text-lg pl-1">
+                <span className="font-bold text-base sm:text-lg">
                   {currentPageTitle}
                 </span>
-                <img
-                  src="icons/arrow.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className={`h-6 sm:h-8 w-auto transition-transform duration-100
-                    ${isNavOpen ? 'rotate-180' : 'rotate-0'}`}
-                />
+                <Arrow className="h-4 sm:h-6 px-1 sm:px-2 w-auto" isRotated={isNavOpen} />
               </button>
             )}
           </div>
         </div>
       </header>
+
       <Navigation
         isHomepage={isHomepage}
         isVisible={isNavOpen}
