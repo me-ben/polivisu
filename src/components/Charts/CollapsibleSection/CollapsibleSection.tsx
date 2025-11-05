@@ -76,10 +76,10 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
         <div className="p-2">
           {/* Quellenabschnitt */}
           {sources && sources.length > 0 && (
-            <div className="mb-4">
-              <h3 className="text-sm font-bold mb-2">
-                {sources.length > 1 ? 'Quellen' : 'Quelle'}
-              </h3>
+            <div className="mb-2">
+              <span className="text-sm mb-2 block">
+                {sources.length > 1 ? 'Quellen:' : 'Quelle:'}
+              </span>
               <div className="flex flex-wrap gap-2 text-sm text-black">
                 {sources.map((s, i) => (
                   <a
@@ -99,9 +99,9 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
           {/* Kommentarabschnitt */}
           {comments && (
             <div>
-              <h3 className="text-sm font-bold mb-2">
+              <span className="text-sm font-bold mb-2">
                 {comments.title || 'Kommentar'}
-              </h3>
+              </span>
               <p className="text-sm text-black whitespace-pre-line">{comments.text}</p>
             </div>
           )}
