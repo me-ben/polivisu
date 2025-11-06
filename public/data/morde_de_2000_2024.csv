@@ -1,7 +1,8 @@
 #TITLE
-Anzahl der Mordopfer in Deutschland pro Jahr
+"Anzahl der Mordopfer in Deutschland pro Jahr"
+
 #DATA
-Jahr,Mordopfer
+"Jahr","Mordopfer"
 2000,497
 2001,464
 2002,449
@@ -27,6 +28,6 @@ Jahr,Mordopfer
 2022,264
 2023,299
 2024,285
+
 #SOURCES
-Bundeskriminalamt,https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/PolizeilicheKriminalstatistik/2024/Interpretation/Opfer/ZR-O-03-T91-Straftaten-vollendet_xls.xlsx?__blob=publicationFile&v=2
-#UNIT
+"Bundeskriminalamt","https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/PolizeilicheKriminalstatistik/2024/Interpretation/Opfer/ZR-O-03-T91-Straftaten-vollendet_xls.xlsx?__blob=publicationFile&v=2"

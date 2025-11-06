@@ -1,7 +1,8 @@
 #TITLE
-Durchschnittliche Dauer Stromunterbrechung pro Verbraucher in Minuten
-#DATA
-Jahr,Stromunterbrechung
+"Durchschnittliche Dauer Stromunterbrechung pro Verbraucher in Minuten"
+#
+DATA
+"Jahr","Stromunterbrechung"
 2006,21.53
 2007,19.25
 2008,16.89
@@ -20,7 +21,9 @@ Jahr,Stromunterbrechung
 2021,12.7
 2022,12.2
 2023,12.8
+
 #SOURCES
-Bundesnetzagentur,https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/Auswertung_Strom/Kennzahlentwicklung2006_2023.pdf
+"Bundesnetzagentur","https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/Auswertung_Strom/Kennzahlentwicklung2006_2023.pdf"
+
 #UNIT
-min
+"min"

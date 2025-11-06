@@ -1,42 +1,46 @@
 #TITLE
-Parteiergebnisse Bundestagswahl 2025
+"Bundestagswahl 2025 Ergebnisse nach Bundesland"
+
 #DATA
-Bundesland,CDU,AfD,SPD,Grüne,Linke,FDP
-Schleswig-Holstein,27.9,15.8,14.6,12.2,6.4,5.0
-Hamburg,20.7,10.9,22.7,19.3,14.5,4.5
-Niedersachsen,30.2,17.3,14.8,11.0,6.9,4.5
-Bremen,20.6,15.1,23.1,15.6,14.8,3.5
-Nordrhein-Westfalen,34.0,16.4,20.0,12.4,8.3,4.4
-Hessen,29.4,18.1,15.0,10.2,7.3,4.8
-Rheinland-Pfalz,31.0,14.5,16.3,13.4,7.1,4.9
-Baden-Württemberg,31.6,19.8,14.2,13.6,6.8,5.6
-Bayern (CSU),37.2,19.0,11.5,12.0,5.7,4.2
-Saarland,25.5,21.6,14.9,9.8,8.7,3.9
-Berlin,18.3,15.2,15.1,16.8,19.9,3.8
-Brandenburg,18.1,32.5,14.8,6.6,10.7,3.2
-Mecklenburg-Vorpommern,22.8,26.4,12.7,8.9,9.5,3.7
-Sachsen,19.7,37.3,8.5,6.5,11.3,3.2
-Sachsen-Anhalt,24.1,29.8,13.2,7.4,10.9,4.1
-Thüringen,23.3,22.9,14.0,9.6,9.8,4.3
+"Bundesland","CDU/CSU","AfD","SPD","Grüne","Linke","FDP"
+"Schleswig-Holstein",27.9,15.8,14.6,12.2,6.4,5.0
+"Hamburg",20.7,10.9,22.7,19.3,14.5,4.5
+"Niedersachsen",30.2,17.3,14.8,11.0,6.9,4.5
+"Bremen",20.6,15.1,23.1,15.6,14.8,3.5
+"Nordrhein-Westfalen",34.0,16.4,20.0,12.4,8.3,4.4
+"Hessen",29.4,18.1,15.0,10.2,7.3,4.8
+"Rheinland-Pfalz",31.0,14.5,16.3,13.4,7.1,4.9
+"Baden-Württemberg",31.6,19.8,14.2,13.6,6.8,5.6
+"Bayern (CSU)",37.2,19.0,11.5,12.0,5.7,4.2
+"Saarland",25.5,21.6,14.9,9.8,8.7,3.9
+"Berlin",18.3,15.2,15.1,16.8,19.9,3.8
+"Brandenburg",18.1,32.5,14.8,6.6,10.7,3.2
+"Mecklenburg-Vorpommern",22.8,26.4,12.7,8.9,9.5,3.7
+"Sachsen",19.7,37.3,8.5,6.5,11.3,3.2
+"Sachsen-Anhalt",24.1,29.8,13.2,7.4,10.9,4.1
+"Thüringen",23.3,22.9,14.0,9.6,9.8,4.3
+
 #SOURCES
-Bundeswahlleiterin – Schleswig-Holstein,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-1.html
-Bundeswahlleiterin – Hamburg,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-2.html
-Bundeswahlleiterin – Niedersachsen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-3.html
-Bundeswahlleiterin – Bremen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-4.html
-Bundeswahlleiterin – Nordrhein-Westfalen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-5.html
-Bundeswahlleiterin – Hessen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-6.html
-Bundeswahlleiterin – Rheinland-Pfalz,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-7.html
-Bundeswahlleiterin – Baden-Württemberg,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-8.html
-Bundeswahlleiterin – Bayern (CSU),https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-9.html
-Bundeswahlleiterin – Saarland,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-10.html
-Bundeswahlleiterin – Berlin,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-11.html
-Bundeswahlleiterin – Brandenburg,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-12.html
-Bundeswahlleiterin – Mecklenburg-Vorpommern,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-13.html
-Bundeswahlleiterin – Sachsen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-14.html
-Bundeswahlleiterin – Sachsen-Anhalt,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-15.html
-Bundeswahlleiterin – Thüringen,https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-16.html
+"Bundeswahlleiterin – Schleswig-Holstein","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-1.html"
+"Bundeswahlleiterin – Hamburg","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-2.html"
+"Bundeswahlleiterin – Niedersachsen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-3.html"
+"Bundeswahlleiterin – Bremen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-4.html"
+"Bundeswahlleiterin – Nordrhein-Westfalen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-5.html"
+"Bundeswahlleiterin – Hessen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-6.html"
+"Bundeswahlleiterin – Rheinland-Pfalz","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-7.html"
+"Bundeswahlleiterin – Baden-Württemberg","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-8.html"
+"Bundeswahlleiterin – Bayern (CSU)","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-9.html"
+"Bundeswahlleiterin – Saarland","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-10.html"
+"Bundeswahlleiterin – Berlin","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-11.html"
+"Bundeswahlleiterin – Brandenburg","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-12.html"
+"Bundeswahlleiterin – Mecklenburg-Vorpommern","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-13.html"
+"Bundeswahlleiterin – Sachsen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-14.html"
+"Bundeswahlleiterin – Sachsen-Anhalt","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-15.html"
+"Bundeswahlleiterin – Thüringen","https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/bund-99/land-16.html"
+
 #UNIT
-%
+"%"
+
 #COMMENTS
-Hinweis,"Diese Daten müssen nochmal überprüft werden, weil ich mir unsicher bin"
-Testkommentar mit großer Länge im Namen, "Bla blaBla blaBla blaBla blaBla bla"
+"Hinweis","Diese Daten müssen nochmal überprüft werden, weil ich mir unsicher bin"
+"Testkommentar mit großer Länge im Namen um zu prüfen was passiert","Bla blaBla blaBla blaBla blaBla bla"

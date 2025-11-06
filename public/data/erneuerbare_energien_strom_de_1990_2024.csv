@@ -1,7 +1,8 @@
 #TITLE
-Anteil erneuerbarer Energien am Bruttostromverbrauch in Deutschland
+"Anteil erneuerbarer Energien am Bruttostromverbrauch in Deutschland"
+
 #DATA
-Jahr,Erneuerbare Energien
+"Jahr","Erneuerbare Energien"
 1990,3.4
 1991,3.1
 1992,3.6
@@ -37,7 +38,9 @@ Jahr,Erneuerbare Energien
 2022,46.3
 2023,52.9
 2024,54.4
+
 #SOURCES
-Bundesministerium für Wirtschaft und Energie,https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Downloads/Energie/zeitreihen-zur-entwicklung-der-erneuerbaren-energien-in-deutschland-1990-2024.pdf?__blob=publicationFile&v=6
+"Bundesministerium für Wirtschaft und Energie","https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Downloads/Energie/zeitreihen-zur-entwicklung-der-erneuerbaren-energien-in-deutschland-1990-2024.pdf?__blob=publicationFile&v=6"
+
 #UNIT
-%
+"%"

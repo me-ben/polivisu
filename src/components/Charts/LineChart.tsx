@@ -43,7 +43,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     )
   }), [chartHeight]);
 
-  const { title, unit, sources, data, comment } = chartData;
+  const { title, unit, sources, comments, data } = chartData;
 
   const plotData = useMemo((): Data[] => {
     if (!data.length || Object.keys(data[0]).length < 2) return [];
@@ -149,11 +149,11 @@ export const LineChart: React.FC<LineChartProps> = ({
         </div>
 
         <div className="w-full lg:w-1/3 flex flex-col gap-6">
-          {(sources.length > 0 || comment) && (
+          {(sources.length > 0 || comments) && (
             <CollapsibleSection
               title="Details"
               sources={sources}
-              comment={comment}
+              comments={comments}
               defaultCollapsed={true}
             />
           )}

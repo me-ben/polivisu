@@ -1,7 +1,8 @@
 #TITLE
-Ausländeranteil in Deutschland
+"Ausländeranteil in Deutschland"
+
 #DATA
-Jahr,Ausländeranteil
+"Jahr","Ausländeranteil"
 1991,7.6
 1992,8.2
 1993,8.6
@@ -37,7 +38,9 @@ Jahr,Ausländeranteil
 2022,13.8
 2023,14.5
 2024,14.8
+
 #SOURCES
-Statista,https://de.statista.com/statistik/daten/studie/14271/umfrage/deutschland-anteil-auslaender-an-bevoelkerung/
+"Statista","https://de.statista.com/statistik/daten/studie/14271/umfrage/deutschland-anteil-auslaender-an-bevoelkerung/"
+
 #UNIT
-%
+"%"
