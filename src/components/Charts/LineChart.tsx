@@ -32,7 +32,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     ssr: false,
     loading: () => (
       <div
-        className="flex items-center justify-center border border-dashed rounded-lg"
+        className="flex items-center justify-center border-2 border-neutral-200 bg-neutral-100 rounded-lg"
         style={{
           height: typeof chartHeight === 'number' ? `${chartHeight}px` : chartHeight,
           width: '100%'
@@ -105,7 +105,7 @@ export const LineChart: React.FC<LineChartProps> = ({
         className="mb-2"
       />
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row gap-2">
         <div className="w-full lg:w-2/3">
           <Plot
             data={filteredPlotData}
