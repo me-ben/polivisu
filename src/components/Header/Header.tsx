@@ -25,20 +25,20 @@ const Header = () => {
       <header className="sticky top-0 z-1000 bg-neutral-800">
         <div className="max-w-6xl mx-auto relative z-1000">
           <div className="flex items-center justify-between w-full gap-2 sm:gap-4 pr-2 sm:pr-4">
-            {/* Logo und Titel Container */}
             <div
               onClick={() => router.push('/')}
               onMouseEnter={() => setIsLogoHovered(true)}
               onMouseLeave={() => setIsLogoHovered(false)}
               className="group flex items-center py-2 sm:py-4 flex-row text-left gap-2 sm:gap-4 flex-1 min-w-0 overflow-hidden cursor-pointer"
             >
-              <Logo isHovered={isLogoHovered} />
+              <div className="shrink-0">
+                <Logo isHovered={isLogoHovered} />
+              </div>
               <h1 className="text-xl font-bold text-white group-hover:underline overflow-hidden text-ellipsis whitespace-nowrap">
                 Deutschland in Daten
               </h1>
             </div>
 
-            {/* Navigation Button - vertikal zentriert */}
             {!isHomepage && (
               <button
                 onClick={() => setIsNavOpen(!isNavOpen)}

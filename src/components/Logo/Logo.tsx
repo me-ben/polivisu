@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
-// Kompakte Animation States
+
 const START_BARS = [
   [170, 0, 0, 0, 60, 0, 0, 180],
   [180, 0, 0, 0, 90, 30, 100, 180],
@@ -55,11 +55,10 @@ const HOVER_COLORS = [
 ];
 
 interface LogoProps {
-  className?: string;
   isHovered?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = "", isHovered = false }) => {
+export const Logo: React.FC<LogoProps> = ({ isHovered = false }) => {
   const [bars, setBars] = useState(START_BARS);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [scale, setScale] = useState<number | null>(null);
@@ -72,27 +71,36 @@ export const Logo: React.FC<LogoProps> = ({ className = "", isHovered = false })
   // Trigger animation once
   useEffect(() => {
     if (scale === null || hasAnimated || isHovered) return;
+    
     const timer = setTimeout(() => {
       setBars(END_BARS);
       setHasAnimated(true);
     }, 0);
+    
     return () => clearTimeout(timer);
   }, [scale, hasAnimated, isHovered]);
 
   // Handle resize
   useEffect(() => {
     if (scale === null) return;
+    
     const handleResize = () => setScale(window.innerWidth >= 640 ? 2/3 : 2/4);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [scale]);
 
-  if (scale === null) return null;
+  // Loading state: placeholder without layout shift
+  if (scale === null) {
+    return <div className="h-8 sm:h-12 w-[45.75px] sm:w-[61px]" />;
+  }
 
   const colors = isHovered ? HOVER_COLORS : DEFAULT_COLORS;
 
   return (
-    <div className={`cursor-pointer ${className}`} style={{ ['--logo-scale' as string]: scale }}>
+    <div 
+      className="h-8 sm:h-12 cursor-pointer" 
+      style={{ ['--logo-scale' as string]: scale }}
+    >
       {bars.map((segments, barIndex) => (
         <div
           key={barIndex}
