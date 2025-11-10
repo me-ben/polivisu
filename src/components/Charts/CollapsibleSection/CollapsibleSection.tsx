@@ -16,6 +16,7 @@ interface CollapsibleSectionProps {
   title: string;
   sources?: Source[];
   comments?: Comment[];
+  csvUrl?: string; // Neue Eigenschaft für CSV-Dateipfad
   defaultCollapsed?: boolean;
   className?: string;
 }
@@ -24,6 +25,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   title,
   sources,
   comments,
+  csvUrl,
   defaultCollapsed = false,
   className = ''
 }) => {
@@ -84,11 +86,22 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-neutral-100 hover:bg-neutral-200 border-2 border-neutral-200 font-base cursor-pointer px-2 rounded-lg"
-                  >
-                    {s.title}
-                  </a>
+                  >{s.title}</a>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* CSV DOWNLOAD BUTTON */}
+          {csvUrl && (
+            <div className="flex flex-wrap gap-2 text-sm text-black pt-2">
+              <a
+                href={csvUrl}
+                download
+                className="bg-neutral-100 hover:bg-neutral-200 border-2 border-neutral-200 font-base text-red-500 cursor-pointer px-2 rounded-lg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >⬇ Daten als CSV herunterladen</a>
             </div>
           )}
 

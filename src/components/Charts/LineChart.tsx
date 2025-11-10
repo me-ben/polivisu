@@ -153,6 +153,7 @@ export const LineChart: React.FC<LineChartProps> = ({
             <CollapsibleSection
               title="Details"
               sources={sources}
+              csvUrl="/public/data/arbeitslosenquote_de_bundeslaender_2024.csv"
               comments={comments}
               defaultCollapsed={true}
             />
