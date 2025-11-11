@@ -1,4 +1,3 @@
-import { promises as fs } from 'fs';
 import { Content } from '@/components/Content/Content';
 import { LineChart } from '@/components/Charts/LineChart';
 import { loadCsvData } from '@/lib/data/loaders/csv-loader';
@@ -7,6 +6,7 @@ export default async function ArbeitslosenquotePage() {
   const chartData = await loadCsvData('data/arbeitslosenquote_de_bundeslaender_2024.csv');
   const chartData2 = await loadCsvData('data/bip_kopf_de_bundeslaender_2024.csv');
   const chartData3 = await loadCsvData('data/bundestagswahl_2025.csv')
+  
 
   return (
     <Content>
@@ -28,6 +28,7 @@ export default async function ArbeitslosenquotePage() {
         chartHeight="300px"
         xLabelAngle={90}
       />
+
     </Content>
   );
 }
