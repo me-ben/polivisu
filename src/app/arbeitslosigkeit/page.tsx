@@ -58,9 +58,9 @@ export default async function ArbeitslosenquotePage() {
 
       <LineChart 
         chartData={chartData4}
-        chartMargin={{ l: 39, r: 0, t: 0, b: 195 }}
-        chartHeight="600px"
-        xLabelAngle={90}
+        chartMargin={{ l: 39, r: 0, t: 0, b: 21 }}
+        chartHeight="400px"
+        xLabelAngle={0}
       />
 
     </Content>
