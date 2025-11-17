@@ -118,11 +118,18 @@ export const LineChart: React.FC<LineChartProps> = ({
                 gridwidth: 1,
                 tickfont: { size: 16, color: 'black' },
                 tickangle: xLabelAngle,
+                showspikes: true,
+                spikemode: 'across',
+                spikethickness: 1,
+                spikecolor: 'black',
+                spikedash: 'solid'
               },
               yaxis: {
                 linecolor: 'black',
                 gridcolor: '#dfdfdf',
                 gridwidth: 1,
+                linewidth: 1,
+                showspikes: false,  // Horizontale Spikeline deaktivieren
                 tickfont: { size: 16, color: 'black' }
               },
               paper_bgcolor: 'white',
