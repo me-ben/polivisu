@@ -98,13 +98,13 @@ export const LineChart: React.FC<LineChartProps> = ({
   return (
     <div className="w-full">
       <h2 className="text-lg font-bold mb-2 text-black">{title}</h2>
-      <TraceToggler
-        traces={traces}
-        visibleTraces={visibleTraces}
-        onToggle={handleToggleTrace}
-        className="mb-2"
-      />
-
+      <div className="block lg:hidden mb-2">
+        <TraceToggler
+          traces={traces}
+          visibleTraces={visibleTraces}
+          onToggle={handleToggleTrace}
+        />
+      </div>
       <div className="flex flex-col lg:flex-row gap-2">
         <div className="w-full lg:w-2/3">
           <Plot
@@ -148,7 +148,14 @@ export const LineChart: React.FC<LineChartProps> = ({
           />
         </div>
 
-        <div className="w-full lg:w-1/3 flex flex-col gap-6">
+        <div className="w-full lg:w-1/3 flex flex-col">
+          <div className="hidden lg:block mb-2">
+            <TraceToggler
+              traces={traces}
+              visibleTraces={visibleTraces}
+              onToggle={handleToggleTrace}
+            />
+          </div>
           {(sources.length > 0 || comments) && (
             <CollapsibleSection
               title="Details"

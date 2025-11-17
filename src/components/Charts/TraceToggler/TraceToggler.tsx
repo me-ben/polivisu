@@ -27,8 +27,8 @@ export const TraceToggler: React.FC<TraceTogglerProps> = ({
   if (traces.length > 1) {
     const allHidden = traces.every(trace => visibleTraces[trace.id] === false);
     const buttonText = allHidden ? 'alle' : 'keine';
-    const buttonAction = allHidden 
-      ? () => onToggleAll(true) 
+    const buttonAction = allHidden
+      ? () => onToggleAll(true)
       : () => onToggleAll(false);
 
     const onToggleAll = (visible: boolean) => {
@@ -52,7 +52,7 @@ export const TraceToggler: React.FC<TraceTogglerProps> = ({
               onClick={() => onToggle(trace.id)}
               onMouseEnter={() => setHoveredTrace(trace.id)}
               onMouseLeave={() => setHoveredTrace(null)}
-              className="cursor-pointer px-1 rounded-lg text-xs font-medium"
+              className="cursor-pointer px-1 rounded-full text-xs font-semibold"
               style={{
                 border: `solid 2px ${bgColor}`,
                 backgroundColor: hoveredTrace === trace.id
@@ -73,30 +73,20 @@ export const TraceToggler: React.FC<TraceTogglerProps> = ({
           onClick={buttonAction}
           onMouseEnter={() => setHoveredTrace('toggle-button')}
           onMouseLeave={() => setHoveredTrace(null)}
-          className="cursor-pointer px-2 rounded-lg text-xs font-medium flex items-center"
+          className="cursor-pointer px-1 rounded-full text-xs font-semibold flex items-center gap-1"
           style={{
-            border: 'solid 2px black',
-            backgroundColor: allHidden
-              ? (hoveredTrace === 'toggle-button' ? 'white' : 'black')
-              : (hoveredTrace === 'toggle-button' ? 'black' : 'white'),
-            color: 'white'
+            border: 'solid 2px #e5e5e5',
+            backgroundColor: hoveredTrace === 'toggle-button'? '#e5e5e5' : '#f5f5f5',
+            color: 'black'
           }}
         >
-          <Image 
-            src="/icons/eye.svg" 
-            alt={buttonText} 
-            width={18} 
-            height={18}
-            style={{
-              filter: allHidden
-                ? (hoveredTrace === 'toggle-button'
-                    ? 'invert(0)'
-                    : 'invert(1)')
-                : (hoveredTrace === 'toggle-button'
-                    ? 'invert(1)'
-                    : 'invert(0)')
-            }}
+          <Image
+            src={allHidden ? "/icons/eye.svg" : "/icons/close.svg"}
+            alt={buttonText}
+            width={allHidden ? 18 : 12}
+            height={allHidden ? 18 : 12}
           />
+          {allHidden ? "alle zeigen" : "alle verstecken"}
         </button>
       </div>
     );
