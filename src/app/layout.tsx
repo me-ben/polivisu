@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="de">
       <body className={`${inter.className} antialiased`}>
         <Header/>
-        <main>
+        <main className="bg-neutral-100">
           {children}
         </main>
       </body>

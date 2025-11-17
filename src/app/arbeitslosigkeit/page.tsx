@@ -1,9 +1,8 @@
 // page.tsx
 import { Content } from '@/components/Content/Content';
 import { LineChart } from '@/components/Charts/LineChart';
-import ChoroplethMap from '@/components/Charts/ChoroplethMapWrapper';
 import { loadCsvData } from '@/lib/data/loaders/csv-loader';
-import type { ChartData } from '@/lib/data/types';
+
 
 async function getData() {
   const [chartData, chartData2, chartData3] = await Promise.all([
@@ -12,47 +11,18 @@ async function getData() {
     loadCsvData('data/bundestagswahl_2025.csv')
   ]);
 
-  return { chartData, chartData2, chartData3 };
+  return {
+    chartData: { ...chartData, csvPath: '/data/arbeitslosenquote_de_bundeslaender_2024.csv' },
+    chartData2: { ...chartData2, csvPath: '/data/bip_kopf_de_bundeslaender_2024.csv' },
+    chartData3: { ...chartData3, csvPath: '/data/bundestagswahl_2025.csv' }
+  };
 }
 
-const normalizeName = (name: string): string => {
-  return name
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .replace(/-/g, ' ')
-    .replace(/\./g, '')
-    .replace(/ä/g, 'ae')
-    .replace(/ö/g, 'oe')
-    .replace(/ü/g, 'ue')
-    .replace(/ß/g, 'ss');
-};
 
-const extractRegionData = (chartData: ChartData, column: string) => {
-  return Object.fromEntries(
-    chartData.data
-      .filter(row => 
-        row.Bundesland != null && 
-        (typeof row[column] === 'string' || typeof row[column] === 'number')
-      )
-      .map(row => {
-        const bundeslandName = String(row.Bundesland);
-        const numericValue = 
-          typeof row[column] === 'number' 
-            ? row[column] 
-            : parseFloat(row[column]);
 
-        return [
-          normalizeName(bundeslandName),
-          isNaN(numericValue) ? 0 : numericValue
-        ];
-      })
-  );
-};
 
 export default async function ArbeitslosenquotePage() {
   const { chartData, chartData2, chartData3 } = await getData();
-  const unemploymentData = extractRegionData(chartData, 'Gesamt');
 
   return (
     <Content>
@@ -82,7 +52,6 @@ export default async function ArbeitslosenquotePage() {
         xLabelAngle={90}
       />
 
-      <ChoroplethMap regionData={unemploymentData} />
     </Content>
   );
 }

@@ -52,13 +52,13 @@ export function parseEnhancedCsv(content: string): ChartData {
   const unitLines = getSection('#UNIT');
   const unit = unitLines?.[0] ?? '';
   if (!unitLines) {
-    validation.warnings.push('ℹ️  Optionale Sektion #UNIT nicht vorhanden (empfohlen für Y-Achsen-Beschriftung)');
+    validation.warnings.push('Optionale Sektion #UNIT nicht vorhanden (empfohlen für Y-Achsen-Beschriftung)');
   }
 
   // SOURCES (optional, aber empfohlen)
   const sourcesLines = getSection('#SOURCES');
   if (!sourcesLines) {
-    validation.warnings.push('ℹ️  Optionale Sektion #SOURCES nicht vorhanden (empfohlen für Quellenangaben)');
+    validation.warnings.push('Optionale Sektion #SOURCES nicht vorhanden (empfohlen für Quellenangaben)');
   }
   
   const sources = sourcesLines?.map((line, index) => {
