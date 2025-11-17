@@ -44,6 +44,25 @@ const SourceItem: React.FC<{ source: Source }> = ({ source }) => (
   </a>
 );
 
+const DownloadButton: React.FC<{ url: string }> = ({ url }) => (
+  <a
+    href={url}
+    download
+    className="bg-neutral-100 hover:bg-neutral-200 border-2 border-neutral-200 font-base cursor-pointer px-2 py-1 rounded-lg inline-flex items-center gap-2"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Image
+      src="/icons/download.svg"
+      alt="Download"
+      width={16}
+      height={16}
+      className="shrink-0"
+    />
+    <span className="whitespace-nowrap">Download</span>
+  </a>
+);
+
 const CommentItem: React.FC<{ comment: Comment }> = ({ comment }) => (
   <div className="text-sm text-black">
     <div className="font-semibold">{comment.title}:</div>
@@ -113,22 +132,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
 
           {csvUrl && (
             <Section title="Daten als CSV-Datei:" className="pt-2">
-              <a
-                href={csvUrl}
-                download
-                className="bg-neutral-100 hover:bg-neutral-200 border-2 border-neutral-200 font-base cursor-pointer px-2 py-1 rounded-lg inline-flex items-center gap-2"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/icons/download.svg"
-                  alt="Download"
-                  width={16}
-                  height={16}
-                  className="shrink-0"
-                />
-                <span className="whitespace-nowrap">Download</span>
-              </a>
+              <DownloadButton url={csvUrl} />
             </Section>
           )}
 
