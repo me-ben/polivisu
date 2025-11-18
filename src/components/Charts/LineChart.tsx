@@ -129,7 +129,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                 gridcolor: '#dfdfdf',
                 gridwidth: 1,
                 linewidth: 1,
-                showspikes: false,  // Horizontale Spikeline deaktivieren
+                showspikes: false,
                 tickfont: { size: 16, color: 'black' }
               },
               paper_bgcolor: 'white',

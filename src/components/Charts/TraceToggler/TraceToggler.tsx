@@ -81,12 +81,12 @@ export const TraceToggler: React.FC<TraceTogglerProps> = ({
           }}
         >
           <Image
-            src={allHidden ? "/icons/eye.svg" : "/icons/close.svg"}
+            src={allHidden ? "/icons/eye-open.svg" : "/icons/eye-closed.svg"}
             alt={buttonText}
-            width={allHidden ? 18 : 12}
-            height={allHidden ? 18 : 12}
+            width={24}
+            height={24}
           />
-          {allHidden ? "alle zeigen" : "alle verstecken"}
+          {allHidden ? "alle anzeigen" : "alle verstecken"}
         </button>
       </div>
     );
