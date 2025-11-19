@@ -1,6 +1,7 @@
 // page.tsx
 import { Content } from '@/components/Content/Content';
 import { LineChart } from '@/components/Charts/LineChart';
+import ChoroplethMap from '@/components/Charts/ChoroplethMap';
 import { loadCsvData } from '@/lib/data/loaders/csv-loader';
 
 
@@ -54,6 +55,14 @@ export default async function ArbeitslosenquotePage() {
         chartMargin={{ l: 22, r: 0, t: 0, b: 195 }}
         chartHeight="300px"
         xLabelAngle={90}
+        traceColors={{
+          "Union": "black",
+          "AfD": "#00a6f4",
+          "SPD": "#fb2c36",
+          "Grüne": "#00c950",
+          "Linke": "#f6339a",
+          "FDP": "#f0b100"
+          }}
       />
 
       <LineChart 
@@ -62,6 +71,8 @@ export default async function ArbeitslosenquotePage() {
         chartHeight="450px"
         xLabelAngle={0}
       />
+
+      <ChoroplethMap/>
 
     </Content>
   );

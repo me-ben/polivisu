@@ -20,13 +20,15 @@ interface LineChartProps {
   chartMargin: ChartMargin;
   chartHeight: string | number;
   xLabelAngle?: number;
+  traceColors?: Record<string, string>;
 }
 
 export const LineChart: React.FC<LineChartProps> = ({
   chartData,
   chartMargin,
   chartHeight,
-  xLabelAngle = 90
+  xLabelAngle = 90,
+  traceColors
 }) => {
   const Plot = useMemo(() => dynamic(() => import('react-plotly.js'), {
     ssr: false,
@@ -52,32 +54,39 @@ export const LineChart: React.FC<LineChartProps> = ({
     const xCol = headers[0];
     const yCols = headers.slice(1);
 
-    return yCols.map((yCol, index) => ({
-      x: data.map(d => d[xCol]),
-      y: data.map(d => Number(d[yCol])),
-      type: 'scatter' as const,
-      mode: 'lines+markers' as const,
-      name: yCol,
-      marker: {
-        size: 2,
-        symbol: 'circle',
-        color: getTraceColor(index)
-      },
-      line: {
-        width: 3,
-        color: getTraceColor(index)
-      },
-      hovertemplate: `${yCol}: %{y}${unit ? unit : ''}<extra></extra>`
-    }));
-  }, [data, unit]);
+    return yCols.map((yCol, index) => {
+      const color = traceColors?.[yCol] || getTraceColor(index);
+      
+      return {
+        x: data.map(d => d[xCol]),
+        y: data.map(d => Number(d[yCol])),
+        type: 'scatter' as const,
+        mode: 'lines+markers' as const,
+        name: yCol,
+        marker: {
+          size: 2,
+          symbol: 'circle',
+          color: color
+        },
+        line: {
+          width: 3,
+          color: color
+        },
+        hovertemplate: `${yCol}: %{y}${unit ? unit : ''}<extra></extra>`
+      };
+    });
+  }, [data, unit, traceColors]);
 
   const traces = useMemo(() =>
-    plotData.map((trace, index) => ({
-      id: trace.name as string,
-      name: trace.name as string,
-      color: getTraceColor(index)
-    })),
-    [plotData]
+    plotData.map((trace, index) => {
+      const traceName = trace.name as string;
+      return {
+        id: traceName,
+        name: traceName,
+        color: traceColors?.[traceName] || getTraceColor(index)
+      };
+    }),
+    [plotData, traceColors]
   );
 
   const [visibleTraces, setVisibleTraces] = React.useState<Record<string, boolean>>(
